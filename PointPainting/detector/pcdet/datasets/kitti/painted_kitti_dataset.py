@@ -7,6 +7,7 @@ from skimage import io
 from ...ops.roiaware_pool3d import roiaware_pool3d_utils
 from ...utils import box_utils, calibration_kitti, common_utils, object3d_kitti
 from ..dataset import DatasetTemplate
+import pathlib
 
 
 class PaintedKittiDataset(DatasetTemplate):
@@ -439,7 +440,7 @@ if __name__ == '__main__':
         import yaml
         from pathlib import Path
         from easydict import EasyDict
-        dataset_cfg = EasyDict(yaml.load(open(sys.argv[2])))
+        dataset_cfg = EasyDict(yaml.load(open(sys.argv[2]), Loader=yaml.FullLoader))
         ROOT_DIR = (Path(__file__).resolve().parent / '../../../').resolve()
         create_kitti_infos(
             dataset_cfg=dataset_cfg,
