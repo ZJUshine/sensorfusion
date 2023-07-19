@@ -1,3 +1,5 @@
 *.jpg
 *.png
 *.bin
+*.txt
+PointPainting/detector/data/kitti
