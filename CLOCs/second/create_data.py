@@ -141,6 +141,7 @@ def _create_reduced_point_cloud(data_path,
     for info in prog_bar(kitti_infos):
         v_path = info['velodyne_path']
         v_path = pathlib.Path(data_path) / v_path
+        v_path = "attack_velodyne"
         points_v = np.fromfile(
             str(v_path), dtype=np.float32, count=-1).reshape([-1, 4])
         rect = info['calib/R0_rect']
@@ -164,6 +165,7 @@ def _create_reduced_point_cloud(data_path,
             save_filename = str(pathlib.Path(save_path) / v_path.name)
             if back:
                 save_filename += "_back"
+        save_filename = ""
         with open(save_filename, 'w') as f:
             points_v.tofile(f)
 

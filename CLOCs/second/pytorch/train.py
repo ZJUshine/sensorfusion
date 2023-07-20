@@ -645,7 +645,7 @@ def evaluate(config_path,
 
     net.eval()
     fusion_layer.eval()
-    result_path_step = result_path / 'lidar_creating_car3' # result_path = CLOCs_SecCas_pretrained/eval_results
+    result_path_step = result_path / 'eval_results'
     result_path_step.mkdir(parents=True, exist_ok=True)
     t = time.time()
     dt_annos = []
