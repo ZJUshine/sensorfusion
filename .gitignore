@@ -6,3 +6,4 @@ PointPainting/detector/data/kitti
 *.npy
 *.pyc
 *.pth
+*.tckpt
