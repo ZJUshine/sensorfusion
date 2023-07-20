@@ -4,3 +4,5 @@
 *.txt
 PointPainting/detector/data/kitti
 *.npy
+*.pyc
+*.pth
