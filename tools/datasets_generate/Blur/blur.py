@@ -1,18 +1,28 @@
 import math
-import cv2
-import random
 import numpy as np
+from PIL import Image
+from glob import glob
+from tqdm import tqdm
+import os
 from numba import jit
 
-
+# cal_blur
+"""
+img : Image.open(image_path)
+theta : 旋转角度
+dx : x方向位移
+dy : y方向位移
+"""
 @jit
-def cal_blur(imgarray, theta, delta, L, S=0):
-    imgheight = imgarray.shape[0]
-    imgwidth = imgarray.shape[1]
+def cal_blur(img, theta, dx, dy, S=0):
+    imgheight = img.size[1]
+    imgwidth = img.size[0]
+    imgarray = np.asarray(img)
     c0 = int(imgheight / 2)
     c1 = int(imgwidth / 2)
+    delta = np.arctan(dy/dx)
+    L = np.sqrt(dx*dx+dy*dy)
     theta = theta / 180 * math.pi
-    delta = delta / 180 * math.pi
     blurred_imgarray = np.copy(imgarray)
     for x in range(0, imgheight):
         for y in range(0, imgwidth):
@@ -41,3 +51,14 @@ def cal_blur(imgarray, theta, delta, L, S=0):
                     count += 1
             blurred_imgarray[x, y] = np.array([sum_r / count, sum_g / count, sum_b / count])
     return blurred_imgarray
+
+
+if __name__ == "__main__":
+    image_paths = glob('/home/usslab/SensorFusion/Dataset/KITTI/object/training/image_2/*.png')
+    for image_path in tqdm(image_paths):
+        file_path, file_name = os.path.split(image_path)
+        image_output_path = "/home/usslab/SensorFusion/kitti_attack/camera_blur/"+file_name
+        img = Image.open(image_path)
+        blurred_imgarray = cal_blur(img, 10, 15, 5)
+        blurred_img = Image.fromarray(blurred_imgarray)
+        blurred_img.save(image_output_path)
