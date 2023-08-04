@@ -1,0 +1,50 @@
+{
+    "kitti_detection_root": "/home/usslab/SensorFusion/kitti",
+    "kitti_tracking_root": "/data/sets/kitti_tracking",
+    "kitti_segmentation_root": "/data/sets/kitti_segmentation",
+    "selected_split": "training",
+
+    "compare_results_detection": {
+
+        "root": "/home/usslab/SensorFusion/kitti_result",
+        "methods": [
+
+            {
+                "name": "detection_results_v1_kitti_faster_rcnn",
+                "color": [0.0, 0.0, 1.0]   
+            }
+        ]
+    },
+
+    "compare_results_tracking": {
+
+        "root": "/data/sets/kitti_results_tracking",
+        "format": "ab3dmot",
+        "methods": [
+
+            {
+                "name": "model1",
+                "color": [0.0, 0.0, 1.0]
+            },
+            {
+                "name": "model2",
+                "color": [0.0, 1.0, 0.0]
+            }
+        ]
+    },
+
+    "folders": {
+        "detection": {
+            "calib": "calib",
+            "image": "image_2",
+            "label": "label_2",
+            "velodyne": "velodyne"
+        },
+        "tracking": {
+            "calib": "calib",
+            "image": "image_02",
+            "label": "label_02",
+            "velodyne": "velodyne"
+        }
+    }
+}
