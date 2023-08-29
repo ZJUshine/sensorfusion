@@ -77,15 +77,15 @@ tsne_results = (tsne_results - result_min) / (result_max - result_min)     # 对
 # 画图
 fig = plt.figure( figsize=(8,8) )
 # 2维度
-# ax = fig.add_subplot(1, 1, 1, title='TSNE')
-# scatter = ax.scatter(x=tsne_results[:,0],y=tsne_results[:,1],c=label,s=10)
+ax = fig.add_subplot(1, 1, 1, title='TSNE')
+scatter = ax.scatter(x=tsne_results[:,0],y=tsne_results[:,1],c=label,s=10)
 
-# 3维度
-ax = fig.add_subplot(111, projection='3d',title='TSNE')
-scatter = ax.scatter(tsne_results[:,0], tsne_results[:,1], tsne_results[:,2],c=label,s=10)
+# # 3维度
+# ax = fig.add_subplot(111, projection='3d',title='TSNE')
+# scatter = ax.scatter(tsne_results[:,0], tsne_results[:,1], tsne_results[:,2],c=label,s=10)
 
-legend = ax.legend(*scatter.legend_elements(),loc="best", title="Classes")
-ax.add_artist(legend)
+# legend = ax.legend(*scatter.legend_elements(),loc="best", title="Classes")
+# ax.add_artist(legend)
 
 #显示图片
 plt.show()

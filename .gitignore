@@ -2,8 +2,9 @@
 *.png
 *.bin
 *.txt
-PointPainting/detector/data/kitti
+PointPainting/detector/data/*
 *.npy
 *.pyc
 *.pth
 *.tckpt
+*.pkl

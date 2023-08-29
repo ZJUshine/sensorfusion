@@ -1,3 +1,5 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 import torch
 from torchvision import transforms
 import numpy as np
@@ -13,7 +15,7 @@ import mmcv
 import pcdet_utils.calibration_kitti as calibration_kitti
 
 
-TRAINING_PATH = "../detector/data/kitti/training/"
+TRAINING_PATH = '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/kitti/training/'
 TWO_CAMERAS = True
 SEG_NET_OPTIONS = ["deeplabv3", "deeplabv3plus", "hma"]
 # TODO choose the segmentation network you want to use, deeplabv3 = 0 deeplabv3plus = 1 hma = 2
@@ -37,8 +39,8 @@ class Painter:
                 self.model.to('cuda')
         elif seg_net_index == 1:
             print(f'Using Segmentation Network -- {SEG_NET_OPTIONS[seg_net_index]}')
-            config_file = './mmseg/configs/deeplabv3plus/deeplabv3plus_r101-d8_512x1024_80k_cityscapes.py'
-            checkpoint_file = './mmseg/checkpoints/deeplabv3plus_r101-d8_512x1024_80k_cityscapes_20200606_114143-068fcfe9.pth'
+            config_file = '/home/usslab/SensorFusion/sensorfusion/PointPainting/painting/mmseg/configs/deeplabv3plus/deeplabv3plus_r101-d8_512x1024_80k_cityscapes.py'
+            checkpoint_file = '/home/usslab/SensorFusion/sensorfusion/PointPainting/painting/mmseg/checkpoints/deeplabv3plus_r101-d8_512x1024_80k_cityscapes_20200606_114143-068fcfe9.pth'
             self.model = init_segmentor(config_file, checkpoint_file, device='cuda:0') # TODO edit here if you want to use different device
 
         

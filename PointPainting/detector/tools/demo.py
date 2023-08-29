@@ -3,7 +3,7 @@ sys.path.append("../")
 import argparse
 import glob
 from pathlib import Path
-
+import os
 # import mayavi.mlab as mlab
 import numpy as np
 import torch
@@ -96,7 +96,9 @@ def main():
             pred_labels = pred_dicts[0]['pred_labels'].cpu().detach().numpy()
             labels = ["Car","Pedestrian","Cyclist"]
             bbox_num = np.shape(pred_labels)[0]
-            file = open('/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/kitti/kitti_inference/' + "{:06d}".format(idx) + '.txt','w')
+            filename = '{:06d}'.format(idx)
+            os.makedirs('/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/kitti/kitti_inference/data/', exist_ok=True)
+            file = open('/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/kitti/kitti_inference/data/' + filename + '.txt','w')
             for bbox_num_index in range (bbox_num):
                 file.write(labels[pred_labels[bbox_num_index]-1]+" ")
                 file.write("-1 -1 -10 0 0 0 0 ")
