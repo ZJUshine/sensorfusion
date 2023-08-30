@@ -13,7 +13,7 @@ dataset_name = args.dataset_name
 # original dataset
 dataset_name = "kitti"
 # # attack lidar
-dataset_name = "lidar_arbitrary_point_injection"
+# dataset_name = "lidar_arbitrary_point_injection"
 # dataset_name = "lidar_gaussian_noise"
 # dataset_name = "lidar_creating_car"
 # dataset_name = "lidar_hiding"
@@ -35,13 +35,14 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/EPNet/"+dataset_name+"/KITTI"
 
     # 配置攻击数据集
 # if ("lidar" in dataset_name):
-#     os.makedirs(DATASET_PATH+"/object/training", exist_ok=True)
-#     os.symlink(ROOT_PATH + "kitti/ImageSets", DATASET_PATH + "/ImageSets")
-#     os.symlink(ROOT_PATH + "kitti/training/calib", DATASET_PATH + "/object/training/calib")
-#     os.symlink(ROOT_PATH + "kitti/training/image_2", DATASET_PATH + "/object/training/image_2")
-#     os.symlink(ROOT_PATH + "kitti/training/image_3", DATASET_PATH + "/object/training/image_3")
-#     os.symlink(ROOT_PATH + "kitti/training/label_2", DATASET_PATH + "/object/training/label_2")
-#     os.symlink(ROOT_PATH + f"kitti_attack/{dataset_name}", DATASET_PATH + "/object/training/velodyne")
+#     os.makedirs(DATASET_PATH+"/training", exist_ok=True)
+    # os.symlink(ROOT_PATH + "kitti/training/calib", DATASET_PATH + "/training/calib")
+    # os.symlink(ROOT_PATH + "kitti/training/image_2", DATASET_PATH + "/training/image_2")
+    # os.symlink(ROOT_PATH + "kitti/training/image_3", DATASET_PATH + "/training/image_3")
+    # os.symlink(ROOT_PATH + "kitti/training/label_2", DATASET_PATH + "/training/label_2")
+    # os.symlink(ROOT_PATH + f"kitti_attack/{dataset_name}", DATASET_PATH + "/training/velodyne")
+    # os.symlink(ROOT_PATH + "kitti/kitti_infos_train.pkl", DATASET_PATH + "/kitti_infos_train.pkl")
+    # os.symlink(ROOT_PATH + "kitti/kitti_infos_val.pkl", DATASET_PATH + "/kitti_infos_val.pkl")
 
 # if ("camera" in dataset_name):
 #     os.makedirs(DATASET_PATH+"/training", exist_ok=True)

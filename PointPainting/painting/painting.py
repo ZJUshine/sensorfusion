@@ -15,7 +15,7 @@ import mmcv
 import pcdet_utils.calibration_kitti as calibration_kitti
 
 
-TRAINING_PATH = '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/kitti/training/'
+TRAINING_PATH = '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/lidar_arbitrary_point_injection/training/'
 TWO_CAMERAS = True
 SEG_NET_OPTIONS = ["deeplabv3", "deeplabv3plus", "hma"]
 # TODO choose the segmentation network you want to use, deeplabv3 = 0 deeplabv3plus = 1 hma = 2
