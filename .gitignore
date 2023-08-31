@@ -10,3 +10,4 @@ PointPainting/detector/data/*
 *.pkl
 EPNet/kitti/
 EPNet/lidar_arbitrary_point_injection/
+CLOCs/datasets/

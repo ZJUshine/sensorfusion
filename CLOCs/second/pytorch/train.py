@@ -11,14 +11,11 @@ import torch
 from google.protobuf import text_format
 from tensorboardX import SummaryWriter
 
-import sys
-# sys.path.append("/home/usslab/CLOCs-master/second/pytorch/model")
-# sys.path.remove('/home/usslab/second.pytorch-1.5')
 import torchplus
 import second.data.kitti_common as kitti
 from second.builder import target_assigner_builder, voxel_builder
 from second.data.preprocess import merge_second_batch
-from second.protos import pipeline_pb2, train_pb2
+from second.protos import pipeline_pb2
 from second.pytorch.builder import (box_coder_builder, input_reader_builder,
                                       lr_scheduler_builder, optimizer_builder,
                                       second_builder)
@@ -26,8 +23,7 @@ from second.utils.eval import get_coco_eval_result, get_official_eval_result,bev
 from second.utils.progress_bar import ProgressBar
 from second.pytorch.core import box_torch_ops
 from second.pytorch.core.losses import SigmoidFocalClassificationLoss
-# from second.pytorch.models import fusion
-from models import fusion
+from second.pytorch.models import fusion
 
 
 def example_convert_to_torch(example, dtype=torch.float32,
@@ -391,7 +387,7 @@ def _predict_kitti_to_file(net,
                            lidar_input=False):
     batch_image_shape = example['image_shape']
     batch_imgidx = example['image_idx']
-    all_3d_output_camera_dict, all_3d_output, top_predictions, fusion_input,torch_index = net(example,detection_2d_path) # Jiang: 这就是2D标签forward的地方
+    all_3d_output_camera_dict, all_3d_output, top_predictions, fusion_input,torch_index = net(example,detection_2d_path)
     t_start = time.time()
     fusion_cls_preds,flag = fusion_layer(fusion_input.cuda(),torch_index.cuda())
     t_end = time.time()
@@ -645,7 +641,7 @@ def evaluate(config_path,
 
     net.eval()
     fusion_layer.eval()
-    result_path_step = result_path / 'eval_results'
+    result_path_step = result_path / f"step_{net.get_global_step()}"
     result_path_step.mkdir(parents=True, exist_ok=True)
     t = time.time()
     dt_annos = []
@@ -683,18 +679,18 @@ def evaluate(config_path,
     sec_per_example = len(eval_dataset) / (time.time() - t)
     print(f'generate label finished({sec_per_example:.2f}/s). start eval:')
     print("validation_loss:", val_loss_final/len(eval_dataloader))
-    # if measure_time:
-    #     print(f"avg example to torch time: {np.mean(prep_example_times) * 1000:.3f} ms")
-    #     print(f"avg prep time: {np.mean(prep_times) * 1000:.3f} ms")
-    # for name, val in net.get_avg_time_dict().items():
-    #     print(f"avg {name} time = {val * 1000:.3f} ms")
-    # if not predict_test:
-    #     gt_annos = [info["annos"] for info in eval_dataset.dataset.kitti_infos]
-    #     if not pickle_result:
-    #         dt_annos = kitti.get_label_annos(result_path_step)
-    #     result = get_official_eval_result(gt_annos, dt_annos, class_names)
-    #     # print(json.dumps(result, indent=2))
-    #     print(result)
+    if measure_time:
+        print(f"avg example to torch time: {np.mean(prep_example_times) * 1000:.3f} ms")
+        print(f"avg prep time: {np.mean(prep_times) * 1000:.3f} ms")
+    for name, val in net.get_avg_time_dict().items():
+        print(f"avg {name} time = {val * 1000:.3f} ms")
+    if not predict_test:
+        gt_annos = [info["annos"] for info in eval_dataset.dataset.kitti_infos]
+        if not pickle_result:
+            dt_annos = kitti.get_label_annos(result_path_step)
+        result = get_official_eval_result(gt_annos, dt_annos, class_names)
+        # print(json.dumps(result, indent=2))
+        print(result)
     #     result = get_coco_eval_result(gt_annos, dt_annos, class_names)
     #     print(result)
     #     if pickle_result:
@@ -919,6 +915,4 @@ def predict_v2(net,example, preds_dict):
     return predictions_dicts
 
 if __name__ == '__main__':
-    evaluate("/home/usslab/SensorFusion/sensorfusion/CLOCs/second/configs/car.fhd.config",
-    "/home/usslab/SensorFusion/sensorfusion/CLOCs/CLOCs_SecCas_pretrained", measure_time=True, batch_size=1, pickle_result=False)
-    # spconv was 1.0 /home/usslab/CLOCs-master/second
+    fire.Fire()
