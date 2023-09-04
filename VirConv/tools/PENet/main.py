@@ -152,7 +152,7 @@ parser.add_argument('-d', '--dilation-rate', default="2", type=int,
                     help='CSPN++ dilation rate')
 
 args = parser.parse_args()
-args.result = os.path.join('..', 'results')
+args.result = os.path.join('..', 'results_lidar_laser_arbitrary_point_injection')
 args.use_rgb = ('rgb' in args.input)
 args.use_d = 'd' in args.input
 args.use_g = 'g' in args.input

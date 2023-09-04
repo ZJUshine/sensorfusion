@@ -1,4 +1,4 @@
-DATA_PATH: '../data/kitti'
+DATA_PATH: '/home/usslab/SensorFusion/sensorfusion/VirConv/data/kitti'
 
 DATASET: 'KittiDataset'
 
