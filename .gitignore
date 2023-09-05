@@ -17,3 +17,14 @@ VirConv/data/
 VirConv/tools/PENet/pe.pth.tar
 VirConv/pcdet.egg-info
 VirConv/tools/results
+VirConv/tools/results_camera_acoustic_blur_linear
+VirConv/tools/results_camera_emi_truncation
+VirConv/tools/results_camera_emi_strip_loss
+VirConv/tools/results_camera_laser_hiding
+VirConv/tools/results_camera_laser_strip_injection
+VirConv/tools/results_camera_projection_creating
+VirConv/tools/results_lidar_laser_arbitrary_point_injection
+VirConv/tools/results_lidar_laser_background_noise_injection
+VirConv/tools/results_lidar_laser_creating_car
+VirConv/tools/results_lidar_laser_hiding
+

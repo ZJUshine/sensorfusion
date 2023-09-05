@@ -1,6 +1,6 @@
 import os
 import argparse
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset_name', default='kitti', type=str, help='攻击数据集')
@@ -14,12 +14,12 @@ dataset_name = args.dataset_name
 # # attack lidar
 # dataset_name = "lidar_laser_arbitrary_point_injection"
 # dataset_name = "lidar_laser_background_noise_injection"
-dataset_name = "lidar_laser_creating_car"
+# dataset_name = "lidar_laser_creating_car"
 # dataset_name = "lidar_laser_hiding"
 # # attack camera
-# dataset_name = "camera_acoustic_blur"
+# dataset_name = "camera_acoustic_blur_linear"
 # dataset_name = "camera_emi_strip_loss"
-# dataset_name = "camera_emi_truncation"
+dataset_name = "camera_emi_truncation"
 # dataset_name = "camera_laser_hiding"
 # dataset_name = "camera_laser_strip_injection"
 # dataset_name = "camera_projection_creating"
@@ -44,21 +44,23 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/VirConv/data/"+dataset_name
 #     os.symlink("/home/usslab/SensorFusion/sensorfusion/VirConv/data/kitti/ImageSets", DATASET_PATH + "/ImageSets")
 
 
-# # if ("camera" in dataset_name):
-# #     os.makedirs(DATASET_PATH+"/training", exist_ok=True)
-# #     os.symlink(ROOT_PATH + "kitti/training/calib", DATASET_PATH + "training/calib")
-# #     os.symlink(ROOT_PATH + f"kitti/{dataset_name}", DATASET_PATH + "training/image_2")
-# #     os.symlink(ROOT_PATH + "kitti/training/label_2", DATASET_PATH + "training/label_2")
-# #     os.symlink(ROOT_PATH + "kitti_attack/training/velodyne", DATASET_PATH + "training/velodyne")
+if ("camera" in dataset_name):
+    os.makedirs(DATASET_PATH+"/training", exist_ok=True)
+    os.symlink(ROOT_PATH + "kitti/training/calib", DATASET_PATH + "/training/calib")
+    os.symlink(ROOT_PATH + f"kitti_attack/{dataset_name}", DATASET_PATH + "/training/image_2")
+    os.symlink(ROOT_PATH + "kitti/training/label_2", DATASET_PATH + "/training/label_2")
+    os.symlink(ROOT_PATH + "kitti/training/velodyne", DATASET_PATH + "/training/velodyne")
+    os.symlink(ROOT_PATH + "kitti/training/planes", DATASET_PATH + "/training/planes")
+    os.symlink("/home/usslab/SensorFusion/sensorfusion/VirConv/data/kitti/ImageSets", DATASET_PATH + "/ImageSets")
 
 
-# # 生成中间数据集文件
-# file = open("/home/usslab/SensorFusion/sensorfusion/VirConv/tools/PENet/main.py", "r+")
-# lines = file.readlines()
-# lines[154] = f"args.result = os.path.join('..', 'results_{dataset_name}')\n"
-# file.seek(0)
-# file.writelines(lines)
-# file.close()
+# 生成中间数据集文件
+file = open("/home/usslab/SensorFusion/sensorfusion/VirConv/tools/PENet/main.py", "r+")
+lines = file.readlines()
+lines[154] = f"args.result = os.path.join('..', 'results_{dataset_name}')\n"
+file.seek(0)
+file.writelines(lines)
+file.close()
 
 os.chdir("/home/usslab/SensorFusion/sensorfusion/VirConv/tools/PENet")
 os.system(f"python /home/usslab/SensorFusion/sensorfusion/VirConv/tools/PENet/main.py \

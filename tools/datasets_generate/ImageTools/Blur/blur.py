@@ -53,12 +53,19 @@ def cal_blur(img, theta, dx, dy, S=0):
     return blurred_imgarray
 
 
-if __name__ == "__main__":
-    image_paths = glob('/home/usslab/SensorFusion/Dataset/KITTI/object/training/image_2/*.png')
-    for image_path in tqdm(image_paths):
-        file_path, file_name = os.path.split(image_path)
-        image_output_path = "/home/usslab/SensorFusion/kitti_attack/camera_blur/"+file_name
-        img = Image.open(image_path)
-        blurred_imgarray = cal_blur(img, 10, 15, 5)
-        blurred_img = Image.fromarray(blurred_imgarray)
-        blurred_img.save(image_output_path)
+# if __name__ == "__main__":
+# image_paths = glob('/home/usslab/SensorFusion/Dataset/KITTI/object/training/image_2/*.png')
+# for image_path in tqdm(image_paths):
+#     file_path, file_name = os.path.split(image_path)
+#     image_output_path = "/home/usslab/SensorFusion/kitti_attack/camera_acoustic_blur_linear/"+file_name
+#     img = Image.open(image_path)
+#     blurred_imgarray = cal_blur(img, 0, 15, 5)
+#     blurred_img = Image.fromarray(blurred_imgarray)
+#     blurred_img.save(image_output_path)
+
+for i in tqdm(range(5033,7481)):
+    img_path = 'old_files/Dataset_old/KITTI/object/training/image_2/'+str(i).zfill(6)+'.png'
+    img = Image.open(img_path)
+    blurred_imgarray = cal_blur(img, 0, 30, 30)
+    blurred_img = Image.fromarray(blurred_imgarray)
+    blurred_img.save("/home/usslab/SensorFusion/kitti_attack/camera_acoustic_blur_linear/"+str(i).zfill(6)+'.png')
