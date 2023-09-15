@@ -27,4 +27,6 @@ VirConv/tools/results_lidar_laser_arbitrary_point_injection
 VirConv/tools/results_lidar_laser_background_noise_injection
 VirConv/tools/results_lidar_laser_creating_car
 VirConv/tools/results_lidar_laser_hiding
+VirConv/tools/results_lidar_emi_gaussian_noise
+VirConv/output
 

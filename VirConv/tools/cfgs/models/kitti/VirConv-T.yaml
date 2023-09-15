@@ -1,7 +1,7 @@
 CLASS_NAMES: ['Car']
 
 DATA_CONFIG:
-    _BASE_CONFIG_: cfgs/dataset_configs/kitti_dataset.yaml
+    _BASE_CONFIG_: /home/usslab/SensorFusion/sensorfusion/VirConv/tools/cfgs/dataset_configs/kitti_dataset.yaml
     DATASET: 'KittiDatasetMM'
     INPUT_DISCARD_RATE: 0.8   # actually discard more than 90% virtual points of RGB image,
                               # as we only saved less than 50% RGB points during depth2points conversion.

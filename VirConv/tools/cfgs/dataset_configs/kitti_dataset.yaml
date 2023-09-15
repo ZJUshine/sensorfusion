@@ -1,4 +1,4 @@
-DATA_PATH: '/home/usslab/SensorFusion/sensorfusion/VirConv/data/kitti'
+DATA_PATH: '/home/usslab/SensorFusion/sensorfusion/VirConv/data/camera_laser_strip_injection'
 
 DATASET: 'KittiDataset'
 

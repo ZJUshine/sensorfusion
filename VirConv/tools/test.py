@@ -21,12 +21,12 @@ warnings.filterwarnings("ignore")
 
 def parse_config():
     parser = argparse.ArgumentParser(description='arg parser')
-    parser.add_argument('--cfg_file', type=str, default="cfgs/models/kitti/VirConv-L.yaml", help='specify the config for training')
+    parser.add_argument('--cfg_file', type=str, default="cfgs/models/kitti/VirConv-T.yaml", help='specify the config for training')
 
     parser.add_argument('--batch_size', type=int, default=None, required=False, help='batch size for training')
     parser.add_argument('--workers', type=int, default=0, help='number of workers for dataloader')
     parser.add_argument('--extra_tag', type=str, default='default', help='extra tag for this experiment')
-    parser.add_argument('--ckpt', type=str, default="./ckpt/VirConv-L2.pth", help='checkpoint to start from')
+    parser.add_argument('--ckpt', type=str, default="./ckpt/VirConv-T2.pth", help='checkpoint to start from')
     parser.add_argument('--launcher', choices=['none', 'pytorch', 'slurm'], default='none')
     parser.add_argument('--tcp_port', type=int, default=18888, help='tcp port for distrbuted training')
     parser.add_argument('--local_rank', type=int, default=0, help='local rank for distributed training')
@@ -44,8 +44,9 @@ def parse_config():
 
     cfg_from_yaml_file(args.cfg_file, cfg)
     cfg.TAG = Path(args.cfg_file).stem
-    cfg.EXP_GROUP_PATH = '/'.join(args.cfg_file.split('/')[1:-1])  # remove 'cfgs' and 'xxxx.yaml'
-
+    print("cfg.TAG",cfg.TAG)
+    cfg.EXP_GROUP_PATH = '/'.join(args.cfg_file.split('/')[-2:-1])  # remove 'cfgs' and 'xxxx.yaml'
+    print("cfg_path",cfg.EXP_GROUP_PATH)
     np.random.seed(1024)
 
 
