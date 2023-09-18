@@ -8,7 +8,9 @@ detection_type = ["_detection_3d"]
 model_type = ["virconv_t"]
 attack_type = ["kitti", "lidar_emi_gaussian_noise", "lidar_laser_arbitrary_point_injection", "lidar_laser_background_noise_injection", "lidar_laser_creating_car", "lidar_laser_hiding", \
                "camera_acoustic_blur_linear", "camera_emi_strip_loss", "camera_emi_truncation", "camera_laser_hiding", "camera_laser_strip_injection", "camera_projection_creating"]
-folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-T/default/eval/epoch_2/val"
+folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-T/default/eval/epoch_2/val/"
+# folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-L/default/eval/epoch_2/val/"
+# folders_path = "/home/usslab/SensorFusion/sensorfusion/CLOCs/second/results/"
 
 csv_name = "AP_" + mode + "_" + model_type[0] + ".csv"
 result_csv = open(csv_name,'w')

@@ -29,4 +29,6 @@ VirConv/tools/results_lidar_laser_creating_car
 VirConv/tools/results_lidar_laser_hiding
 VirConv/tools/results_lidar_emi_gaussian_noise
 VirConv/output
+Results_Viewer/
+CLOCs/second/results
 

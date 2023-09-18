@@ -1,5 +1,6 @@
 import os
 import argparse
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
@@ -10,17 +11,20 @@ if __name__=='__main__':
 dataset_name = args.dataset_name
 
 # original dataset
-dataset_name = "kitti"
+# dataset_name = "kitti_clean"
 # # attack lidar
-dataset_name = "lidar_arbitrary_point_injection"
-# dataset_name = "lidar_gaussian_noise"
-# dataset_name = "lidar_creating_car"
-# dataset_name = "lidar_hiding"
+# dataset_name = "lidar_emi_gaussian_noise"
+# dataset_name = "lidar_laser_arbitrary_point_injection"
+# dataset_name = "lidar_laser_background_noise_injection"
+# dataset_name = "lidar_laser_creating_car"
+# dataset_name = "lidar_laser_hiding"
 # # attack camera
-# dataset_name = "camera_blur"
-# dataset_name = "camera_color_strip"
-# dataset_name = "camera_hiding"
-# dataset_name = "camera_truncation"
+# dataset_name = "camera_acoustic_blur_linear"
+# dataset_name = "camera_emi_strip_loss"
+# dataset_name = "camera_emi_truncation"
+# dataset_name = "camera_laser_hiding"
+# dataset_name = "camera_laser_strip_injection"
+dataset_name = "camera_projection_creating"
 
 ROOT_PATH = "/home/usslab/SensorFusion/"
 DATASET_PATH = ROOT_PATH + "sensorfusion/CLOCs/datasets/"+dataset_name
@@ -43,13 +47,13 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/CLOCs/datasets/"+dataset_name
 #     os.symlink(ROOT_PATH + f"kitti_attack/{dataset_name}", DATASET_PATH + "/training/velodyne")
 #     os.makedirs(DATASET_PATH + "/training/velodyne_reduced", exist_ok=True)
 
-# # if ("camera" in dataset_name):
-# #     os.makedirs(DATASET_PATH+"/training", exist_ok=True)
-# #     os.symlink(ROOT_PATH + "kitti/training/calib", DATASET_PATH + "training/calib")
-# #     os.symlink(ROOT_PATH + f"kitti/{dataset_name}", DATASET_PATH + "training/image_2")
-# #     os.symlink(ROOT_PATH + "kitti/training/label_2", DATASET_PATH + "training/label_2")
-# #     os.symlink(ROOT_PATH + "kitti_attack/training/velodyne", DATASET_PATH + "training/velodyne")
-
+# if ("camera" in dataset_name):  
+#     os.makedirs(DATASET_PATH+"/training", exist_ok=True)
+#     os.symlink(ROOT_PATH + "kitti/training/calib", DATASET_PATH + "/training/calib")
+#     os.symlink(ROOT_PATH + f"kitti_attack/{dataset_name}", DATASET_PATH + "/training/image_2")
+#     os.symlink(ROOT_PATH + "kitti/training/label_2", DATASET_PATH + "/training/label_2")
+#     os.symlink(ROOT_PATH + "kitti/training/velodyne", DATASET_PATH + "/training/velodyne")
+#     os.makedirs(DATASET_PATH + "/training/velodyne_reduced", exist_ok=True)
 
 # # 生成中间数据集文件
 # os.chdir("/home/usslab/SensorFusion/sensorfusion/CLOCs/second/")
@@ -60,7 +64,8 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/CLOCs/datasets/"+dataset_name
 # os.system(f"python /home/usslab/SensorFusion/sensorfusion/CLOCs/second/create_data.py create_reduced_point_cloud \
 # --data_path=/home/usslab/SensorFusion/sensorfusion/CLOCs/datasets/{dataset_name}")
 
-
+# if ("lidar" in dataset_name):
+#     os.symlink(ROOT_PATH + "sensorfusion/CLOCs/d2_detection_data/kitti", ROOT_PATH + f"sensorfusion/CLOCs/d2_detection_data/{dataset_name}")
 
 
 # file = open("/home/usslab/SensorFusion/sensorfusion/CLOCs/second/configs/car.fhd.config", "r+")
@@ -76,12 +81,19 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/CLOCs/datasets/"+dataset_name
 # file.writelines(lines)
 # file.close()
 
-os.makedirs(f"/home/usslab/SensorFusion/sensorfusion/CLOCs/second/results/{dataset_name}",exist_ok=True)
-os.chdir("/home/usslab/SensorFusion/sensorfusion/CLOCs/second")
-os.system(f"python /home/usslab/SensorFusion/sensorfusion/CLOCs/second/pytorch/train.py evaluate \
---config_path=/home/usslab/SensorFusion/sensorfusion/CLOCs/second/configs/car.fhd.config \
---model_dir=/home/usslab/SensorFusion/sensorfusion/CLOCs/CLOCs_SecCas_pretrained \
---result_path=/home/usslab/SensorFusion/sensorfusion/CLOCs/second/results/{dataset_name} \
---pickle_result=False \
---measure_time=True --batch_size=1")
+# os.makedirs(f"/home/usslab/SensorFusion/sensorfusion/CLOCs/second/results/{dataset_name}",exist_ok=True)
+# os.chdir("/home/usslab/SensorFusion/sensorfusion/CLOCs/second")
+# os.system(f"python /home/usslab/SensorFusion/sensorfusion/CLOCs/second/pytorch/train.py evaluate \
+# --config_path=/home/usslab/SensorFusion/sensorfusion/CLOCs/second/configs/car.fhd.config \
+# --model_dir=/home/usslab/SensorFusion/sensorfusion/CLOCs/CLOCs_SecCas_pretrained \
+# --result_path=/home/usslab/SensorFusion/sensorfusion/CLOCs/second/results/{dataset_name} \
+# --pickle_result=False \
+# --measure_time=True --batch_size=1")
 
+
+# 计算AP
+attack_type = ["lidar_laser_arbitrary_point_injection", "lidar_laser_background_noise_injection", "lidar_laser_creating_car", "lidar_laser_hiding"]
+for attack in attack_type:
+    os.system(f"/home/usslab/SensorFusion/sensorfusion/tools/kitti_AP/evaluate_object_3d_offline_3d \
+            /home/usslab/SensorFusion/kitti/training/label_2 \
+            /home/usslab/SensorFusion/sensorfusion/CLOCs/second/results/{attack}")

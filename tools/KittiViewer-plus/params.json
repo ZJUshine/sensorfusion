@@ -1,16 +1,31 @@
 {
-    "kitti_detection_root": "/home/usslab/SensorFusion/kitti",
+    "kitti_detection_root": "/home/usslab/SensorFusion",
     "kitti_tracking_root": "/data/sets/kitti_tracking",
     "kitti_segmentation_root": "/data/sets/kitti_segmentation",
-    "selected_split": "training",
+    "selected_split": "kitti_attack",
+
+    "folders": {
+        "detection": {
+            "calib": "kitti_clean/calib",
+            "image": "kitti_clean/image_2",
+            "label": "kitti_clean/label_2",
+            "velodyne": "lidar_laser_hiding"
+        },
+        "tracking": {
+            "calib": "calib",
+            "image": "image_02",
+            "label": "label_02",
+            "velodyne": "velodyne"
+        }
+    },
 
     "compare_results_detection": {
 
-        "root": "/home/usslab/SensorFusion/kitti_result",
+        "root": "/home/usslab/SensorFusion/sensorfusion/Results_Viewer/VirConv-L",
         "methods": [
 
             {
-                "name": "detection_results_v1_kitti_faster_rcnn",
+                "name": "lidar_laser_hiding",
                 "color": [0.0, 0.0, 1.0]   
             }
         ]
@@ -31,20 +46,7 @@
                 "color": [0.0, 1.0, 0.0]
             }
         ]
-    },
-
-    "folders": {
-        "detection": {
-            "calib": "calib",
-            "image": "image_2",
-            "label": "label_2",
-            "velodyne": "velodyne"
-        },
-        "tracking": {
-            "calib": "calib",
-            "image": "image_02",
-            "label": "label_02",
-            "velodyne": "velodyne"
-        }
     }
+
+
 }

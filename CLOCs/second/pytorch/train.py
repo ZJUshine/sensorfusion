@@ -305,7 +305,7 @@ def train(config_path,
 
             fusion_layer.eval()
             net.eval()
-            result_path_step = result_path / f"step_{net.get_global_step()}"
+            result_path_step = result_path / f"data"
             result_path_step.mkdir(parents=True, exist_ok=True)
             print("#################################")
             print("#################################", file=logf)
@@ -641,7 +641,7 @@ def evaluate(config_path,
 
     net.eval()
     fusion_layer.eval()
-    result_path_step = result_path / f"step_{net.get_global_step()}"
+    result_path_step = result_path / f"data"
     result_path_step.mkdir(parents=True, exist_ok=True)
     t = time.time()
     dt_annos = []
