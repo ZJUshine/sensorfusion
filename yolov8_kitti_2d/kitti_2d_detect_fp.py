@@ -33,30 +33,31 @@ def write_kitti_format(results, image_path,file_name):
         else:
             continue
     
-for dataset_name in ['camera_acoustic_blur_linear','camera_emi_strip_loss','camera_emi_truncation','camera_laser_hiding','camera_laser_strip_injection','camera_projection_creating']:
-    image_paths = sorted(glob(f"/home/usslab/SensorFusion/kitti_attack/{dataset_name}/*.png"))
+# for dataset_name in ['camera_acoustic_blur_linear','camera_emi_strip_loss','camera_emi_truncation','camera_laser_hiding','camera_laser_strip_injection','camera_projection_creating']:
+#     image_paths = sorted(glob(f"/home/usslab/SensorFusion/kitti_attack/{dataset_name}/*.png"))
+dataset_name = "kitti"
+image_paths = sorted(glob(f"/home/usslab/SensorFusion/kitti/training/image_2/*.png"))
+os.makedirs(f'./fp/rgb_detections_{dataset_name}',exist_ok=True)
+# Load a pretrained YOLOv8n model
+model = YOLO('yolov8x.pt')
+file_train = open(f'./fp/rgb_detections_{dataset_name}/rgb_detection_train.txt', 'w')
+for image_path in image_paths:
+    # 如果图片名字在这个train.txt里面，就执行
+    if os.path.basename(image_path).split('.')[0]+'\n' in open('./ImageSets/train.txt').readlines(): 
+        # Run inference on the source
+        results = model(image_path)
+        # 保存为KITTI格式的TXT文件
+        write_kitti_format(results, image_path,file_train)
+        print(f'Image {image_path} done.')
+file_train.close()
 
-    os.makedirs(f'./fp/rgb_detections_{dataset_name}',exist_ok=True)
-    # Load a pretrained YOLOv8n model
-    model = YOLO('yolov8x.pt')
-    file_train = open(f'./fp/rgb_detections_{dataset_name}/rgb_detection_train.txt', 'w')
-    for image_path in image_paths:
-        # 如果图片名字在这个train.txt里面，就执行
-        if os.path.basename(image_path).split('.')[0]+'\n' in open('./ImageSets/train.txt').readlines(): 
-            # Run inference on the source
-            results = model(image_path)
-            # 保存为KITTI格式的TXT文件
-            write_kitti_format(results, image_path,file_train)
-            print(f'Image {image_path} done.')
-    file_train.close()
-
-    file_val = open(f'./fp/rgb_detections_{dataset_name}/rgb_detection_val.txt', 'w')
-    for image_path in image_paths:
-        # 如果图片名字在这个val.txt里面，就执行
-        if os.path.basename(image_path).split('.')[0]+'\n' in open('./ImageSets/val.txt').readlines(): 
-            # Run inference on the source
-            results = model(image_path)
-            # 保存为KITTI格式的TXT文件
-            write_kitti_format(results, image_path,file_val)
-            print(f'Image {image_path} done.')
-    file_val.close()
+file_val = open(f'./fp/rgb_detections_{dataset_name}/rgb_detection_val.txt', 'w')
+for image_path in image_paths:
+    # 如果图片名字在这个val.txt里面，就执行
+    if os.path.basename(image_path).split('.')[0]+'\n' in open('./ImageSets/val.txt').readlines(): 
+        # Run inference on the source
+        results = model(image_path)
+        # 保存为KITTI格式的TXT文件
+        write_kitti_format(results, image_path,file_val)
+        print(f'Image {image_path} done.')
+file_val.close()

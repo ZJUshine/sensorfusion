@@ -5,22 +5,22 @@ mode = "val"
 class_type = ["car"]
 detection_type = ["_detection_3d"]
 
-model_type = ["virconv_t"]
+model_type = ["epnet"]
 attack_type = ["kitti", "lidar_emi_gaussian_noise", "lidar_laser_arbitrary_point_injection", "lidar_laser_background_noise_injection", "lidar_laser_creating_car", "lidar_laser_hiding", \
                "camera_acoustic_blur_linear", "camera_emi_strip_loss", "camera_emi_truncation", "camera_laser_hiding", "camera_laser_strip_injection", "camera_projection_creating"]
-folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-T/default/eval/epoch_2/val/"
+# folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-T/default/eval/epoch_2/val/"
 # folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-L/default/eval/epoch_2/val/"
 # folders_path = "/home/usslab/SensorFusion/sensorfusion/CLOCs/second/results/"
+folders_path = "/home/usslab/SensorFusion/sensorfusion/EPNet/tools/log/Car/models/full_epnet_with_iou_branch/eval_results/"
 
 csv_name = "AP_" + mode + "_" + model_type[0] + ".csv"
 result_csv = open(csv_name,'w')
 writer = csv.writer(result_csv)
 header = ['model', 'attack','difficulty', 'ap', 'ap_delta','AP_relative','threshold','tp', 'tp_delta','fp', 'fp_delta','fn', 'fn_delta','fnr','fnr_delta','fpr', 'fpr_delta']
 writer.writerow(header)
-
 for model in model_type:
     for attack in attack_type:
-        ap_dir = folders_path + attack + "/final_result"
+        ap_dir = folders_path + attack + "/eval/epoch_46/val/final_result"
         if os.path.exists(ap_dir):
             info_file = ap_dir + "/" + "stats_car_detection_3d.txt"
             f_info = open(info_file, "r")

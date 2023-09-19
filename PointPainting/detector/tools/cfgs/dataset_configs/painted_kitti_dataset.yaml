@@ -1,5 +1,5 @@
 DATASET: 'PaintedKittiDataset'
-DATA_PATH: '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/lidar_arbitrary_point_injection'
+DATA_PATH: '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/lidar_emi_gaussian_noise'
 
 POINT_CLOUD_RANGE: [0, -40, -3, 70.4, 40, 1]
 
