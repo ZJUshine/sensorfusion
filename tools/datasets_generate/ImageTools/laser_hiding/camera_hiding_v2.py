@@ -122,19 +122,20 @@ strength = 300 #blooming中心亮度
 # current_dir = os.getcwd()
 # print(current_dir)
 # 获取当前脚本所在的目录
-script_directory = os.path.dirname(os.path.abspath(__file__))
-# 将当前工作目录更改为脚本所在的目录
-os.chdir('/home/usslab/SensorFusion/Dataset')
-# 确认当前工作目录已更改
-print("Current working directory:", os.getcwd())
+# script_directory = os.path.dirname(os.path.abspath(__file__))
+# # 将当前工作目录更改为脚本所在的目录
+# os.chdir('/home/usslab/SensorFusion/Dataset')
+# # 确认当前工作目录已更改
+# print("Current working directory:", os.getcwd())
 
 # os.chdir('/home/usslab/SensorFusion/Dataset')
-for i in tqdm(range(0,10)):
-    img_path = './KITTI/object/training/image_2/'+str(i).zfill(6)+'.png'
+for i in tqdm(range(3617,7481)):
+
+    img_path = '/home/usslab/SensorFusion/kitti/training/image_3/'+str(i).zfill(6)+'.png'
     image = cv2.imread(img_path)
     # image = cv_imread(img_path)
     image = adjust_exposure(image, exposure_value)
     image = blooming(image,strength)
 
     #visualize_image(image)
-    cv2.imwrite("./kitti_attack/camera_hiding_totally/"+str(i).zfill(6)+'.png',image)
+    cv2.imwrite("/home/usslab/SensorFusion/kitti_attack/image_3_attack/camera_laser_hiding/"+str(i).zfill(6)+'.png',image)

@@ -63,9 +63,9 @@ def cal_blur(img, theta, dx, dy, S=0):
 #     blurred_img = Image.fromarray(blurred_imgarray)
 #     blurred_img.save(image_output_path)
 
-for i in tqdm(range(5033,7481)):
-    img_path = 'old_files/Dataset_old/KITTI/object/training/image_2/'+str(i).zfill(6)+'.png'
+for i in tqdm(range(0,7481)):
+    img_path = '/home/usslab/SensorFusion/kitti/training/image_3/'+str(i).zfill(6)+'.png'
     img = Image.open(img_path)
     blurred_imgarray = cal_blur(img, 0, 30, 30)
     blurred_img = Image.fromarray(blurred_imgarray)
-    blurred_img.save("/home/usslab/SensorFusion/kitti_attack/camera_acoustic_blur_linear/"+str(i).zfill(6)+'.png')
+    blurred_img.save("/home/usslab/SensorFusion/kitti_attack/image_3_attack/camera_acoustic_blur_linear/"+str(i).zfill(6)+'.png')

@@ -75,9 +75,9 @@ def color_strip_injection(image_path,x=0,y=0,h=0,w=0,wavelength=632,strength=150
 
 
 
-for i in tqdm(range(0,7481)):
-    img_path = 'old_files/Dataset_old/KITTI/object/training/image_2/'+str(i).zfill(6)+'.png'
+for i in tqdm(range(5324,7481)):
+    img_path = '/home/usslab/SensorFusion/kitti/training/image_3/'+str(i).zfill(6)+'.png'
     
     image = color_strip_injection(img_path)
     # visualize_image(image)
-    image.save("kitti_attack/camera_color_strip_injection/"+str(i).zfill(6)+'.png')
+    image.save("/home/usslab/SensorFusion/kitti_attack/image_3_attack/camera_laser_strip_injection/"+str(i).zfill(6)+'.png')

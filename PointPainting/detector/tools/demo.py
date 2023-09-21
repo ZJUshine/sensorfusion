@@ -6,7 +6,7 @@ from pathlib import Path
 import os
 # import mayavi.mlab as mlab
 import numpy as np
-import torch
+# import torch
 
 from pcdet.config import cfg, cfg_from_yaml_file
 from pcdet.datasets import DatasetTemplate
@@ -91,20 +91,21 @@ def main():
             data_dict = demo_dataset.collate_batch([data_dict])
             load_data_to_gpu(data_dict)
             pred_dicts, _ = model.forward(data_dict)
+            print(pred_dicts)
             pred_boxes = pred_dicts[0]['pred_boxes'].cpu().detach().numpy()
             pred_scores = pred_dicts[0]['pred_scores'].cpu().detach().numpy()
             pred_labels = pred_dicts[0]['pred_labels'].cpu().detach().numpy()
             labels = ["Car","Pedestrian","Cyclist"]
             bbox_num = np.shape(pred_labels)[0]
             filename = '{:06d}'.format(idx)
-            os.makedirs('/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/kitti/kitti_inference/data/', exist_ok=True)
-            file = open('/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/kitti/kitti_inference/data/' + filename + '.txt','w')
-            for bbox_num_index in range (bbox_num):
-                file.write(labels[pred_labels[bbox_num_index]-1]+" ")
-                file.write("-1 -1 -10 0 0 0 0 ")
-                file.write(" ".join(pred_boxes[bbox_num_index].astype(str))+" ")
-                file.write(str(pred_scores[bbox_num_index])+"\n")
-            file.close()
+            # os.makedirs('/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/kitti/kitti_inference/data/', exist_ok=True)
+            # file = open('/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/kitti/kitti_inference/data/' + filename + '.txt','w')
+            # for bbox_num_index in range (bbox_num):
+            #     file.write(labels[pred_labels[bbox_num_index]-1]+" ")
+            #     file.write("-1 -1 -10 0 0 0 0 ")
+            #     file.write(" ".join(pred_boxes[bbox_num_index].astype(str))+" ")
+            #     file.write(str(pred_scores[bbox_num_index])+"\n")
+            # file.close()
 
     logger.info('Demo done.')
 

@@ -21,9 +21,9 @@ def bayer_swap(img_input_path,img_output_path):
     img.save(img_output_path)
 
 if __name__ == '__main__':
-    image_paths = glob('/home/usslab/SensorFusion/Dataset/KITTI/object/training/image_2/*.png')
+    image_paths = glob('/home/usslab/SensorFusion/kitti/training/image_3/*.png')
     for image_path in tqdm(image_paths):
         file_path, file_name = os.path.split(image_path)
-        image_output_path = "/home/usslab/SensorFusion/kitti_attack/camera_color_strip/"+file_name
+        image_output_path = "/home/usslab/SensorFusion/kitti_attack/image_3_attack/camera_emi_strip_loss/"+file_name
         img2 = Image.open(image_path)
         bayer_swap(image_path,image_output_path)

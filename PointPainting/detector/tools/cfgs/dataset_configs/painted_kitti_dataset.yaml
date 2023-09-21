@@ -1,5 +1,5 @@
 DATASET: 'PaintedKittiDataset'
-DATA_PATH: '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/lidar_emi_gaussian_noise'
+DATA_PATH: '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/camera_laser_hiding'
 
 POINT_CLOUD_RANGE: [0, -40, -3, 70.4, 40, 1]
 
@@ -68,3 +68,5 @@ DATA_PROCESSOR:
         'train': 16000,
         'test': 40000
       }
+
+

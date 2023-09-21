@@ -5,13 +5,14 @@ mode = "val"
 class_type = ["car"]
 detection_type = ["_detection_3d"]
 
-model_type = ["epnet"]
+model_type = ["PP"]
 attack_type = ["kitti", "lidar_emi_gaussian_noise", "lidar_laser_arbitrary_point_injection", "lidar_laser_background_noise_injection", "lidar_laser_creating_car", "lidar_laser_hiding", \
                "camera_acoustic_blur_linear", "camera_emi_strip_loss", "camera_emi_truncation", "camera_laser_hiding", "camera_laser_strip_injection", "camera_projection_creating"]
 # folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-T/default/eval/epoch_2/val/"
 # folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-L/default/eval/epoch_2/val/"
 # folders_path = "/home/usslab/SensorFusion/sensorfusion/CLOCs/second/results/"
-folders_path = "/home/usslab/SensorFusion/sensorfusion/EPNet/tools/log/Car/models/full_epnet_with_iou_branch/eval_results/"
+# folders_path = "/home/usslab/SensorFusion/sensorfusion/EPNet/tools/log/Car/models/full_epnet_with_iou_branch/eval_results/"
+folders_path = "/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/output/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/tools/cfgs/kitti_models/pointpillar_painted/default/eval/epoch_80/val/"
 
 csv_name = "AP_" + mode + "_" + model_type[0] + ".csv"
 result_csv = open(csv_name,'w')
@@ -20,12 +21,11 @@ header = ['model', 'attack','difficulty', 'ap', 'ap_delta','AP_relative','thresh
 writer.writerow(header)
 for model in model_type:
     for attack in attack_type:
-        ap_dir = folders_path + attack + "/eval/epoch_46/val/final_result"
+        ap_dir = folders_path + attack + "/final_result"
         if os.path.exists(ap_dir):
             info_file = ap_dir + "/" + "stats_car_detection_3d.txt"
             f_info = open(info_file, "r")
             groups = f_info.read().split("\n\n")
-
             threshold_easy = float(groups[0].split("\n")[-1].split(" ")[1])
             tp_easy = float(groups[0].split("\n")[-1].split(" ")[3])
             fp_easy = float(groups[0].split("\n")[-1].split(" ")[5])

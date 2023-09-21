@@ -46,8 +46,8 @@ def visualize_image(image):
 # Example usage
 overlay_x = 0
 overlay_y = 0
-os.chdir('/home/usslab/SensorFusion/Dataset')
-creating_object_path = './Tools/ImageTools/car.png'
+# os.chdir('/home/usslab/SensorFusion/Dataset')
+creating_object_path = '/home/usslab/SensorFusion/sensorfusion/tools/datasets_generate/ImageTools/car.png'
 
 waterMark = Image.open(creating_object_path)
 
@@ -55,9 +55,9 @@ waterMark = Image.open(creating_object_path)
 
 
 
-for i in tqdm(range(1000,7481)):
-    img_path = './KITTI/object/training/image_2/'+str(i).zfill(6)+'.png'
+for i in tqdm(range(0,7481)):
+    img_path = '/home/usslab/SensorFusion/kitti/training/image_3/'+str(i).zfill(6)+'.png'
     origin = Image.open(img_path)
     image = rightPaste(waterMark,origin)
     visualize_image(image)
-    image.save("./kitti_attack/camera_creating/"+str(i).zfill(6)+'.png')
+    image.save("/home/usslab/SensorFusion/kitti_attack/image_3_attack/camera_projection_creating/"+str(i).zfill(6)+'.png')
