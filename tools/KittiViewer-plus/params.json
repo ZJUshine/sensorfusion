@@ -21,11 +21,11 @@
 
     "compare_results_detection": {
         
-        "root": "/home/usslab/SensorFusion/sensorfusion/tools/KittiViewer-plus/Results_Viewer/EPNet",
+        "root": "/home/usslab/SensorFusion/sensorfusion/tools/KittiViewer-plus/Results_Viewer/Second",
         "methods": [
 
             {
-                "name": "lidar_laser_creating_car",
+                "name": "kitti",
                 "color": [0.0, 0.0, 1.0]   
             }
         ]
