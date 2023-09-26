@@ -9,7 +9,7 @@
             "calib": "kitti_clean/calib",
             "image": "kitti_clean/image_2",
             "label": "kitti_clean/label_2",
-            "velodyne": "lidar_laser_creating_car"
+            "velodyne": "kitti_clean/velodyne"
         },
         "tracking": {
             "calib": "calib",
@@ -21,7 +21,7 @@
 
     "compare_results_detection": {
         
-        "root": "/home/usslab/SensorFusion/sensorfusion/tools/KittiViewer-plus/Results_Viewer/Second",
+        "root": "/home/usslab/SensorFusion/sensorfusion/tools/KittiViewer-plus/Results_Viewer/CLOCs",
         "methods": [
 
             {
