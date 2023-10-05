@@ -1,6 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 from argparse import ArgumentParser
-
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 from mmdet3d.apis import inference_detector, init_model
 from mmdet3d.registry import VISUALIZERS
 

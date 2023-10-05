@@ -18,13 +18,13 @@ dataset_name = args.dataset_name
 
 # dataset_name = "lidar_laser_arbitrary_point_injection"
 # dataset_name = "lidar_laser_background_noise_injection"
-# dataset_name = "lidar_laser_creating_car"
+dataset_name = "lidar_laser_creating_car"
 # dataset_name = "lidar_laser_hiding"
 # # attack camera
 # dataset_name = "camera_acoustic_blur_linear"
 # dataset_name = "camera_emi_strip_loss"
 # dataset_name = "camera_emi_truncation"
-dataset_name = "camera_laser_hiding"
+# dataset_name = "camera_laser_hiding"
 # dataset_name = "camera_laser_strip_injection"
 # dataset_name = "camera_projection_creating"
 
@@ -45,8 +45,8 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/PointPainting/detector/data/"+dataset_n
 #     os.symlink(ROOT_PATH + "kitti/training/image_3", DATASET_PATH + "/training/image_3")
 #     os.symlink(ROOT_PATH + "kitti/training/label_2", DATASET_PATH + "/training/label_2")
 #     os.symlink(ROOT_PATH + f"kitti_attack/{dataset_name}", DATASET_PATH + "/training/velodyne")
-#     os.symlink(ROOT_PATH + "kitti/kitti_infos_train.pkl", DATASET_PATH + "/kitti_infos_train.pkl")
-#     os.symlink(ROOT_PATH + "kitti/kitti_infos_val.pkl", DATASET_PATH + "/kitti_infos_val.pkl")
+    # os.symlink(ROOT_PATH + "kitti/kitti_infos_train.pkl", DATASET_PATH + "/kitti_infos_train.pkl")
+    # os.symlink(ROOT_PATH + "kitti/kitti_infos_val.pkl", DATASET_PATH + "/kitti_infos_val.pkl")
 
 # if ("camera" in dataset_name):
 #     os.makedirs(DATASET_PATH+"/training", exist_ok=True)
@@ -60,7 +60,7 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/PointPainting/detector/data/"+dataset_n
 #     os.symlink(ROOT_PATH + f"kitti_attack/image_3_attack/{dataset_name}", DATASET_PATH + "/training/image_3")
 
 
-# # 生成中间数据集文件
+# 生成中间数据集文件
 # file = open("/home/usslab/SensorFusion/sensorfusion/PointPainting/painting/painting.py", "r+")
 # lines = file.readlines()
 # lines[15] = f"TRAINING_PATH = '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/{dataset_name}/training/'\n"
@@ -94,9 +94,9 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/PointPainting/detector/data/"+dataset_n
 #         /home/usslab/SensorFusion/sensorfusion/PointPainting/detector/output/kitti_models/pointpillar_painted/default/eval/epoch_80/val/default/final_result")
 # 计算AP
 # 
-attack_type = ["kitti", "lidar_emi_gaussian_noise", "lidar_laser_arbitrary_point_injection", "lidar_laser_background_noise_injection", "lidar_laser_creating_car", "lidar_laser_hiding", \
-               "camera_acoustic_blur_linear", "camera_emi_strip_loss", "camera_emi_truncation", "camera_laser_hiding", "camera_laser_strip_injection", "camera_projection_creating"]
-attack_type = ["kitti"]
+# attack_type = ["kitti", "lidar_emi_gaussian_noise", "lidar_laser_arbitrary_point_injection", "lidar_laser_background_noise_injection", "lidar_laser_creating_car", "lidar_laser_hiding", \
+#                "camera_acoustic_blur_linear", "camera_emi_strip_loss", "camera_emi_truncation", "camera_laser_hiding", "camera_laser_strip_injection", "camera_projection_creating"]
+attack_type = ["lidar_laser_creating_car"]
 for attack in attack_type:
     os.system(f"/home/usslab/SensorFusion/sensorfusion/tools/kitti_AP/evaluate_object_3d_offline_3d \
             /home/usslab/SensorFusion/kitti/training/label_2 \

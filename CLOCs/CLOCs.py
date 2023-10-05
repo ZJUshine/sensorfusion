@@ -16,7 +16,7 @@ dataset_name = args.dataset_name
 # dataset_name = "lidar_emi_gaussian_noise"
 # dataset_name = "lidar_laser_arbitrary_point_injection"
 # dataset_name = "lidar_laser_background_noise_injection"
-# dataset_name = "lidar_laser_creating_car"
+dataset_name = "lidar_laser_creating_car"
 # dataset_name = "lidar_laser_hiding"
 # # attack camera
 # dataset_name = "camera_acoustic_blur_linear"
@@ -24,7 +24,7 @@ dataset_name = args.dataset_name
 # dataset_name = "camera_emi_truncation"
 # dataset_name = "camera_laser_hiding"
 # dataset_name = "camera_laser_strip_injection"
-dataset_name = "camera_projection_creating"
+# dataset_name = "camera_projection_creating"
 
 ROOT_PATH = "/home/usslab/SensorFusion/"
 DATASET_PATH = ROOT_PATH + "sensorfusion/CLOCs/datasets/"+dataset_name
@@ -44,7 +44,7 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/CLOCs/datasets/"+dataset_name
 #     os.symlink(ROOT_PATH + "kitti/training/image_2", DATASET_PATH + "/training/image_2")
 #     os.symlink(ROOT_PATH + "kitti/training/image_3", DATASET_PATH + "/training/image_3")
 #     os.symlink(ROOT_PATH + "kitti/training/label_2", DATASET_PATH + "/training/label_2")
-#     os.symlink(ROOT_PATH + f"kitti_attack/{dataset_name}", DATASET_PATH + "/training/velodyne")
+    # os.symlink(ROOT_PATH + f"kitti_attack/{dataset_name}", DATASET_PATH + "/training/velodyne")
 #     os.makedirs(DATASET_PATH + "/training/velodyne_reduced", exist_ok=True)
 
 # if ("camera" in dataset_name):  
@@ -55,8 +55,8 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/CLOCs/datasets/"+dataset_name
 #     os.symlink(ROOT_PATH + "kitti/training/velodyne", DATASET_PATH + "/training/velodyne")
 #     os.makedirs(DATASET_PATH + "/training/velodyne_reduced", exist_ok=True)
 
-# # 生成中间数据集文件
-# os.chdir("/home/usslab/SensorFusion/sensorfusion/CLOCs/second/")
+# 生成中间数据集文件
+os.chdir("/home/usslab/SensorFusion/sensorfusion/CLOCs/second/")
 # os.system(f"python /home/usslab/SensorFusion/sensorfusion/CLOCs/second/create_data.py create_kitti_info_file \
 # --data_path=/home/usslab/SensorFusion/sensorfusion/CLOCs/datasets/{dataset_name}")
 # os.system(f"python /home/usslab/SensorFusion/sensorfusion/CLOCs/second/create_data.py create_groundtruth_database \
@@ -92,7 +92,7 @@ DATASET_PATH = ROOT_PATH + "sensorfusion/CLOCs/datasets/"+dataset_name
 
 
 # 计算AP
-attack_type = ["lidar_laser_arbitrary_point_injection", "lidar_laser_background_noise_injection", "lidar_laser_creating_car", "lidar_laser_hiding"]
+attack_type = ["lidar_laser_creating_car"]
 for attack in attack_type:
     os.system(f"/home/usslab/SensorFusion/sensorfusion/tools/kitti_AP/evaluate_object_3d_offline_3d \
             /home/usslab/SensorFusion/kitti/training/label_2 \

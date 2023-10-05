@@ -1,5 +1,5 @@
 DATASET: 'PaintedKittiDataset'
-DATA_PATH: '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/camera_laser_hiding'
+DATA_PATH: '/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/data/lidar_laser_creating_car'
 
 POINT_CLOUD_RANGE: [0, -40, -3, 70.4, 40, 1]
 

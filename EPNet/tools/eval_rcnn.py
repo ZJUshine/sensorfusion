@@ -924,7 +924,7 @@ def repeat_eval_ckpt(root_result_dir, ckpt_dir):
 
 def create_dataloader(logger):
     mode = 'TEST' if args.test else 'EVAL'
-    DATA_PATH = os.path.join('/home/usslab/SensorFusion/sensorfusion/EPNet/camera_projection_creating')
+    DATA_PATH = os.path.join('/home/usslab/SensorFusion/sensorfusion/EPNet/lidar_laser_creating_car')
 
     # create dataloader
     test_set = KittiRCNNDataset(root_dir = DATA_PATH, npoints = cfg.RPN.NUM_POINTS, split = cfg.TEST.SPLIT, mode = mode,
@@ -987,4 +987,6 @@ if __name__ == "__main__":
             repeat_eval_ckpt(root_result_dir, ckpt_dir)
         else:
             eval_single_ckpt(root_result_dir)
+
+
 

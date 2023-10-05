@@ -44,4 +44,4 @@ EPNet/lidar_laser_creating_car
 EPNet/lidar_laser_hiding
 EPNet/lidar_emi_gaussian_noise
 PointPainting/detector/output
-
+mmdetection3d/results

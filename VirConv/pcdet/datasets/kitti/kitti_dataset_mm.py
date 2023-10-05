@@ -482,6 +482,6 @@ if __name__ == '__main__':
         create_kitti_infos(
             dataset_cfg=dataset_cfg,
             class_names=['Car', 'Pedestrian', 'Cyclist'],
-            data_path=ROOT_DIR / 'data' / 'camera_laser_strip_injection',
-            save_path=ROOT_DIR / 'data' / 'camera_laser_strip_injection'
+            data_path=ROOT_DIR / 'data' / 'lidar_laser_creating_car',
+            save_path=ROOT_DIR / 'data' / 'lidar_laser_creating_car'
         )

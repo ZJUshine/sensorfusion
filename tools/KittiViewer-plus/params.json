@@ -7,7 +7,7 @@
     "folders": {
         "detection": {
             "calib": "kitti_clean/calib",
-            "image": "kitti_clean/image_2",
+            "image": "camera_projection_creating",
             "label": "kitti_clean/label_2",
             "velodyne": "kitti_clean/velodyne"
         },
@@ -21,11 +21,11 @@
 
     "compare_results_detection": {
         
-        "root": "/home/usslab/SensorFusion/sensorfusion/tools/KittiViewer-plus/Results_Viewer/CLOCs",
+        "root": "/home/usslab/SensorFusion/sensorfusion/tools/KittiViewer-plus/Results_Viewer/F-pointnet",
         "methods": [
 
             {
-                "name": "kitti",
+                "name": "camera_projection_creating",
                 "color": [0.0, 0.0, 1.0]   
             }
         ]
