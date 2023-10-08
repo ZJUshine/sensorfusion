@@ -11,8 +11,8 @@ attack_type = ["kitti", "camera_laser_hiding", "camera_projection_creating", "ca
 "lidar_laser_hiding", "lidar_laser_creating_car", "lidar_laser_arbitrary_point_injection", "lidar_laser_background_noise_injection","lidar_emi_gaussian_noise"]
 # model_type = ["VirConv-T"]
 # folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-T/default/eval/epoch_2/val/"
-model_type = ["VirConv-L"]
-folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-L/default/eval/epoch_2/val/"
+# model_type = ["VirConv-L"]
+# folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirConv-L/default/eval/epoch_2/val/"
 # model_type = ["PP"]
 # folders_path = "/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/output/home/usslab/SensorFusion/sensorfusion/PointPainting/detector/tools/cfgs/kitti_models/pointpillar_painted/default/eval/epoch_80/val/"
 # model_type = ["CLOCs"]
@@ -22,7 +22,8 @@ folders_path = "/home/usslab/SensorFusion/sensorfusion/VirConv/output/kitti/VirC
 # model_type = ["sencond"]
 # folders_path = "/home/usslab/SensorFusion/sensorfusion/mmdetection3d/results/second/"
 # attack_type = ["kitti","lidar_laser_hiding", "lidar_laser_creating_car", "lidar_laser_arbitrary_point_injection", "lidar_laser_background_noise_injection","lidar_emi_gaussian_noise"]
-
+model_type = ["mvxnet"]
+folders_path = "/home/usslab/SensorFusion/sensorfusion/mmdetection3d/results/mvxnet/"
 csv_name = "AP_" + mode + "_average_" + model_type[0] + ".csv"
 result_csv = open(csv_name,'w')
 writer = csv.writer(result_csv)
@@ -30,9 +31,10 @@ header = ['model', 'attack','ap', 'ap_delta','AP_relative','fp', 'fp_delta','fp_
 writer.writerow(header)
 for model in model_type:
     for attack in attack_type:
-        ap_dir = folders_path + attack + "/final_result"
+        # ap_dir = folders_path + attack + "/final_result"
         # ap_dir = folders_path + attack + "/eval/epoch_46/val/final_result" # EPNet
         # ap_dir = folders_path + attack # CLOCs
+        ap_dir = folders_path + f"mvxnet_{attack}_results" # mvxnet
         if os.path.exists(ap_dir):
             info_file = ap_dir + "/" + "stats_car_detection_3d.txt"
             f_info = open(info_file, "r")

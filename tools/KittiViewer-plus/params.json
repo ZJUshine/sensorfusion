@@ -7,9 +7,9 @@
     "folders": {
         "detection": {
             "calib": "kitti_clean/calib",
-            "image": "camera_projection_creating",
+            "image": "kitti_clean/image_2",
             "label": "kitti_clean/label_2",
-            "velodyne": "kitti_clean/velodyne"
+            "velodyne": "lidar_laser_creating_car"
         },
         "tracking": {
             "calib": "calib",
@@ -25,7 +25,7 @@
         "methods": [
 
             {
-                "name": "camera_projection_creating",
+                "name": "lidar_laser_creating_car",
                 "color": [0.0, 0.0, 1.0]   
             }
         ]

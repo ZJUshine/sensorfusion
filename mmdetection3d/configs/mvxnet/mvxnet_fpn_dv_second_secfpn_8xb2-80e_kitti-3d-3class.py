@@ -142,7 +142,7 @@ model = dict(
 
 # dataset settings
 dataset_type = 'KittiDataset'
-data_root = 'data/kitti/'
+data_root = 'data/camera_projection_creating/'
 class_names = ['Pedestrian', 'Cyclist', 'Car']
 metainfo = dict(classes=class_names)
 input_modality = dict(use_lidar=True, use_camera=True)
@@ -271,3 +271,4 @@ visualizer = dict(
 
 # You may need to download the model first is the network is unstable
 load_from = 'https://download.openmmlab.com/mmdetection3d/pretrain_models/mvx_faster_rcnn_detectron2-caffe_20e_coco-pretrain_gt-sample_kitti-3-class_moderate-79.3_20200207-a4a6a3c7.pth'  # noqa
+

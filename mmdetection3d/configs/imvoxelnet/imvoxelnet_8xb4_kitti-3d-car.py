@@ -78,7 +78,7 @@ model = dict(
         max_num=50))
 
 dataset_type = 'KittiDataset'
-data_root = 'data/kitti/'
+data_root = 'data/camera_projection_creating/'
 class_names = ['Car']
 input_modality = dict(use_lidar=False, use_camera=True)
 point_cloud_range = [0, -39.68, -3, 69.12, 39.68, 1]
@@ -174,3 +174,8 @@ find_unused_parameters = True  # only 1 of 4 FPN outputs is used
 vis_backends = [dict(type='LocalVisBackend')]
 visualizer = dict(
     type='Det3DLocalVisualizer', vis_backends=vis_backends, name='visualizer')
+
+
+
+
+
